@@ -1,0 +1,17 @@
+{
+  "name": "advent-of-code-2024",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Advent of Code 2024 with Neovim!",
+  "main": "main.js",
+  "scripts": {
+    "day_1": "node src/day_1/code.js",
+    "pretty": "npx prettier . --write"
+  },
+  "author": "c-shinkle",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "3.4.2",
+    "typescript": "^5.7.2"
+  }
+}
