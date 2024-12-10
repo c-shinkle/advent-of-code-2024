@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 
-const data = readFileSync("src/day_1/input.txt").toString();
-//const data = `3   4
+const input = readFileSync("src/day_1/input.txt").toString();
+//const input = `3   4
 //4   3
 //2   5
 //1   3
@@ -9,7 +9,7 @@ const data = readFileSync("src/day_1/input.txt").toString();
 //3   3
 //`;
 
-//console.log(data);
+//console.log(input);
 
 const part1 = (input) => {
   const lines = input.split("\n");
@@ -40,7 +40,7 @@ const part1 = (input) => {
   return total;
 };
 
-//console.log(part1(data));
+//console.log(part1(input));
 
 const part2 = (input) => {
   const lines = input.split("\n");
@@ -71,4 +71,4 @@ const part2 = (input) => {
   return sum;
 };
 
-console.log(part2(data));
+console.log(part2(input));

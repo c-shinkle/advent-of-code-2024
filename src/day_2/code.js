@@ -29,7 +29,7 @@ const part1 = (input) => {
   return sum;
 };
 
-console.log(part1(input));
+// console.log(part1(input));
 
 /**
  * @param {number} start
@@ -84,13 +84,12 @@ const part2 = (input) => {
 
   let sum = 0;
   for (const line of lines) {
-    const levelStrings = line.split(" ");
-    const levelNumbers = levelStrings.map((s) => Number.parseInt(s));
+    const levels = line.split(" ").map((s) => Number.parseInt(s));
 
-    if (isDesc(levelNumbers) || isAsc(levelNumbers)) {
-      console.log(`Original array safe: ${levelNumbers}`);
+    if (isDesc(levels) || isAsc(levels)) {
+      console.log(`Original array safe: ${levels}`);
       sum += 1;
-    } else if (checkAllSubsetsOfOne(levelNumbers)) {
+    } else if (checkAllSubsetsOfOne(levels)) {
       sum += 1;
     }
   }

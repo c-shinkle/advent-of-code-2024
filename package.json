@@ -3,7 +3,6 @@
   "type": "module",
   "version": "0.1.0",
   "description": "Advent of Code 2024 with Neovim!",
-  "main": "main.js",
   "scripts": {
     "day_1": "node src/day_1/code.js",
     "day_2": "node src/day_2/code.js",
