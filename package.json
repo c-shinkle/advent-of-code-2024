@@ -6,6 +6,7 @@
   "scripts": {
     "day_1": "node src/day_1/code.js",
     "day_2": "node src/day_2/code.js",
+    "day_3": "node src/day_3/code.js",
     "pretty": "npx prettier . --write"
   },
   "author": "c-shinkle",
