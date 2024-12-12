@@ -30,18 +30,9 @@ const part1 = (input) => {
 
 // console.log(part1(input));
 
-/**
- * @param {number[]} haystack
- * @param {number} needle
- * @return {number}
- */
-const findGreatestLowerBound = (haystack, needle) => {
-  return haystack.findLast((element) => element <= needle) ?? haystack[0];
-};
-
-const input = readFileSync("src/day_3/input.txt").toString();
-// const input =
-//   "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
+// const input = readFileSync("src/day_3/input.txt").toString();
+const input =
+  "xmul(2,4)&mul[3,7]!^dont()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
 
 /**
  * @param {string} input
@@ -54,18 +45,17 @@ const part2 = (input) => {
   const disableIndexes = [...input.matchAll(new RegExp(/don't\(\)/g))].map(
     (a) => a.index,
   );
-  if (enableIndexes.length === 0 || disableIndexes.length === 0) {
-    throw Error("Neither index arrays can be empty!");
-  }
 
   const mulRegex = new RegExp(/mul\([0-9]{1,3},[0-9]{1,3}\)/g);
   const operandCaptures = new RegExp(/^mul\(([0-9]{1,3}),([0-9]{1,3})\)$/);
   let sum = 0;
 
   for (const match of input.matchAll(mulRegex)) {
+    //Assumption: start >= 0
     const start = match.index;
-    const enableGLB = findGreatestLowerBound(enableIndexes, start);
-    const disableGLB = findGreatestLowerBound(disableIndexes, start);
+    //Assumption: enableIndexes starts with a '0', therefore, we will always find an element
+    const enableGLB = enableIndexes.findLast((e) => e <= start);
+    const disableGLB = disableIndexes.findLast((e) => e <= start) ?? -1;
 
     if (enableGLB > disableGLB || (enableGLB <= start && start < disableGLB)) {
       const parts = operandCaptures.exec(match);
