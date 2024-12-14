@@ -4,21 +4,16 @@
   "version": "0.1.0",
   "description": "Advent of Code 2024 with Neovim!",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "pretty": "npx prettier . --write",
-    "day_1": "node src/day_1/code.js",
-    "day_2": "node src/day_2/code.js",
-    "day_3": "node src/day_3/code.js"
+    "1_day": "bun 1_day/code.js",
+    "2_day": "bun 2_day/code.js",
+    "3_day": "bun 3_day/code.js"
   },
   "author": "c-shinkle",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.7.0",
+    "@types/bun": "latest",
     "prettier": "3.4.2",
     "typescript": "^5.7.2"
-  },
-  "jest": {
-    "testEnvironment": "jest-environment-node",
-    "transform": {}
   }
 }

@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-// const input = readFileSync("src/day_3/input.txt").toString();
+// const input = readFileSync("4_day/input.txt").toString();
 const input = "aaaXMASbbbXMASccc";
 
 /**
@@ -55,14 +55,14 @@ export const getRowCount = (row) => {
 };
 
 /**
- * @param {string[]} array 
- * @param {number} count 
+ * @param {string[]} array
+ * @param {number} count
  * @returns {string}
  */
 function* windows(array, count = 1) {
   let index = 0;
   while (index < array.length - count + 1) {
-    yield array.slice(index, index + count).join('');
+    yield array.slice(index, index + count).join("");
     index++;
   }
 }
