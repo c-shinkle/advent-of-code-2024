@@ -1,9 +1,32 @@
 import { describe, test, expect } from "bun:test";
-import { getRowCount } from "./code.js";
+import { checkAllColumns, checkAllDiagonals, checkAllRows } from "./code.js";
 
 describe("Day 4", () => {
-  test("should get row count", () => {
-    const row = "aaaXMASbbbXMASccc";
-    expect(getRowCount(row)).toEqual(2);
+  const rows = [
+    "MMMSXXMASM",
+    "MSAMXMSMSA",
+    "AMXSXMAAMM",
+    "MSAMASMSMX",
+    "XMASAMXAMM",
+    "XXAMMXXAMA",
+    "SMSMSASXSS",
+    "SAXAMASAAA",
+    "MAMMMXMMMM",
+    "MXMXAXMASX",
+  ];
+
+  test("should get rows right count", () => {
+    const actual = checkAllRows(rows);
+    expect(actual).toEqual(3);
+  });
+
+  test("should get columns down count", () => {
+    const actual = checkAllColumns(rows);
+    expect(actual).toEqual(1);
+  });
+
+  test("should get all diagonals right-down count", () => {
+    const actual = checkAllDiagonals(rows);
+    expect(actual).toEqual(1);
   });
 });
