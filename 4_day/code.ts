@@ -1,4 +1,3 @@
-import { reverse } from "dns";
 import { readFileSync } from "fs";
 
 // const input = readFileSync("4_day/input.txt").toString();
@@ -18,25 +17,24 @@ MXMXAXMASX
 console.log(part1(input));
 
 export function part1(input: string) {
-  const rows = input.trim().split("\n");
-  const reverseRows = rows.map((r) => [...r].reverse().join(""));
-  const reverseColumns = rows.reverse();
   let count = 0;
 
-  // Check all rows right
+  const rows = input.trim().split("\n");
   count += checkAllRowsRight(rows);
-  // Check all rows left
-  count += checkAllRowsLeft(reverseRows);
-  // Check all columns down
-  count += checkAllColumns(rows);
-  count += checkAllDiagonals(rows);
+  count += checkAllRowsLeft(rows);
+  count += checkAllColumnsDown(rows);
+  count += checkAllColumnsUp(rows);
+  count += checkAllDiagonalsDownRight(rows);
+  count += checkAllDiagonalsUpRight(rows);
+  count += checkAllDiagonalsDownLeft(rows);
+  count += checkAllDiagonalsUpLeft(rows);
 
   return count;
 }
 
 export function getRowCount(row: string) {
-  let count = 0,
-    i = -1;
+  let count = 0;
+  let i = -1;
   while ((i = row.indexOf("XMAS", i + 1)) != -1) {
     count += 1;
   }
@@ -57,9 +55,8 @@ export function checkAllRowsLeft(rows: string[]) {
   return checkAllRowsRight(reverseRows);
 }
 
-export function checkAllColumns(rows: string[]) {
+export function checkAllColumnsDown(rows: string[]) {
   let count = 0;
-  // Check all columns down
   for (let i = 0; i < rows[0].length; i++) {
     let col = "";
     for (const row of rows) {
@@ -70,22 +67,27 @@ export function checkAllColumns(rows: string[]) {
   return count;
 }
 
-export function checkAllDiagonals(rows: string[]) {
+export function checkAllColumnsUp(rows: string[]) {
+  const reverseCols = rows.toReversed();
+  return checkAllColumnsDown(reverseCols);
+}
+
+export function checkAllDiagonalsDownRight(rows: string[]) {
   const rowLen = rows.length;
   const colLen = rows[0].length;
   let count = 0;
 
-  for (const offset of rangeEx(0, rowLen)) {
+  for (let offset = 0; offset < rowLen; offset++) {
     let dia = "";
-    for (const index of rangeEx(0, Math.min(rowLen - offset, colLen))) {
+    for (let index = 0; index < Math.min(rowLen - offset, colLen); index++) {
       dia += rows[index + offset][index];
     }
     count += getRowCount(dia);
   }
 
-  for (const offset of rangeEx(1, colLen)) {
+  for (let offset = 1; offset < colLen; offset++) {
     let dia = "";
-    for (const index of rangeEx(0, Math.min(rowLen, colLen - offset))) {
+    for (let index = 0; index < Math.min(rowLen, colLen - offset); index++) {
       dia += rows[index][index + offset];
     }
     count += getRowCount(dia);
@@ -94,6 +96,23 @@ export function checkAllDiagonals(rows: string[]) {
   return count;
 }
 
-function rangeEx(start: number, end: number) {
-  return Array.from({ length: end - start }, (_, i) => start + i);
+export function checkAllDiagonalsUpRight(rows: string[]) {
+  const reverseCols = rows.toReversed();
+  return checkAllDiagonalsDownRight(reverseCols);
 }
+
+export function checkAllDiagonalsDownLeft(rows: string[]) {
+  const reverseRows = rows.map((r) => [...r].reverse().join(""));
+  return checkAllDiagonalsDownRight(reverseRows);
+}
+
+export function checkAllDiagonalsUpLeft(rows: string[]) {
+  const reverseRowsAndCols = rows
+    .map((r) => [...r].reverse().join(""))
+    .reverse();
+  return checkAllDiagonalsDownRight(reverseRowsAndCols);
+}
+
+// function rangeEx(start: number, end: number) {
+//   return Array.from({ length: end - start }, (_, i) => start + i);
+// }

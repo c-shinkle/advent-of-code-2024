@@ -1,5 +1,15 @@
 import { describe, it, expect } from "bun:test";
-import { checkAllColumns, checkAllDiagonals, checkAllRowsRight, checkAllRowsLeft } from "./code";
+import {
+  checkAllColumnsDown,
+  checkAllDiagonalsDownRight,
+  checkAllDiagonalsDownLeft,
+  checkAllDiagonalsUpRight,
+  checkAllDiagonalsUpLeft,
+  checkAllRowsRight,
+  checkAllRowsLeft,
+  checkAllColumnsUp,
+  part1,
+} from "./code";
 
 describe("Day 4", () => {
   const rows = [
@@ -26,12 +36,49 @@ describe("Day 4", () => {
   });
 
   it("should get columns down count", () => {
-    const actual = checkAllColumns(rows);
+    const actual = checkAllColumnsDown(rows);
     expect(actual).toEqual(1);
   });
 
-  it("should get all diagonals right-down count", () => {
-    const actual = checkAllDiagonals(rows);
+  it("should get columns up count", () => {
+    const actual = checkAllColumnsUp(rows);
+    expect(actual).toEqual(2);
+  });
+
+  it("should get all diagonals down-right count", () => {
+    const actual = checkAllDiagonalsDownRight(rows);
     expect(actual).toEqual(1);
+  });
+
+  it("should get all diagonals up-right count", () => {
+    const actual = checkAllDiagonalsUpRight(rows);
+    expect(actual).toEqual(4);
+  });
+
+  it("should get all diagonals down-left count", () => {
+    const actual = checkAllDiagonalsDownLeft(rows);
+    expect(actual).toEqual(1);
+  });
+
+  it("should get all diagonals up-left count", () => {
+    const actual = checkAllDiagonalsUpLeft(rows);
+    expect(actual).toEqual(4);
+  });
+
+  it("should count all xmas", () => {
+    const input = `
+MMMSXXMASM
+MSAMXMSMSA
+AMXSXMAAMM
+MSAMASMSMX
+XMASAMXAMM
+XXAMMXXAMA
+SMSMSASXSS
+SAXAMASAAA
+MAMMMXMMMM
+MXMXAXMASX
+`;
+    const actual = part1(input);
+    expect(actual).toEqual(18);
   });
 });
