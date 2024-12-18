@@ -10,11 +10,8 @@ const input = readFileSync("2_day/input.txt").toString();
 
 // console.log(input);
 
-/**
- * @param {string} input
- */
-const part1 = (input) => {
-  const lines = input.split("\n");
+const part1 = (input: string) => {
+  const lines = input.trim().split("\n");
 
   let sum = 0;
   for (const line of lines) {
@@ -31,19 +28,10 @@ const part1 = (input) => {
 
 // console.log(part1(input));
 
-/**
- * @param {number} start
- * @param {number} end
- * @returns {number[]}
- */
-const range = (start, end) =>
+const range = (start: number, end: number) =>
   Array.from({ length: end - start + 1 }, (_, i) => start + i);
 
-/**
- * @param {string[]} levels
- * @returns {boolean}
- */
-const isAsc = (levels) => {
+const isAsc = (levels: number[]) => {
   let prev = levels[0];
   for (const level of levels.slice(1)) {
     const foo = range(prev + 1, prev + 3);
@@ -52,16 +40,10 @@ const isAsc = (levels) => {
     }
     prev = level;
   }
-  console.log("Found ascending levels!");
-  console.log(`${levels}`);
   return true;
 };
 
-/**
- * @param {string[]} levels
- * @returns {boolean}
- */
-const isDesc = (levels) => {
+const isDesc = (levels: number[]) => {
   let prev = levels[0];
   for (const level of levels.slice(1)) {
     const foo = range(prev - 3, prev - 1);
@@ -70,24 +52,18 @@ const isDesc = (levels) => {
     }
     prev = level;
   }
-  console.log("Found descending levels!");
-  console.log(`${levels}`);
   return true;
 };
 
-/**
- * @param {string} input
- * @return {number}
- */
-const part2 = (input) => {
-  const lines = input.split("\n");
+const part2 = (input: string) => {
+  const lines = input.trim().split("\n");
 
   let sum = 0;
   for (const line of lines) {
     const levels = line.split(" ").map((s) => Number.parseInt(s));
 
     if (isDesc(levels) || isAsc(levels)) {
-      console.log(`Original array safe: ${levels}`);
+      // console.log(`Original array safe: ${levels}`);
       sum += 1;
     } else if (checkAllSubsetsOfOne(levels)) {
       sum += 1;
@@ -97,17 +73,11 @@ const part2 = (input) => {
   return sum;
 };
 
-/**
- * @param {number[]} allLevels
- * @returns {boolean}
- */
-const checkAllSubsetsOfOne = (allLevels) => {
+const checkAllSubsetsOfOne = (allLevels: number[]) => {
   for (let i = 0; i < allLevels.length; i++) {
     const subsetLevels = allLevels.toSpliced(i, 1);
     if (isDesc(subsetLevels) || isAsc(subsetLevels)) {
-      console.log(
-        `Subset safe: ${subsetLevels} (removed value: ${allLevels[i]})`,
-      );
+      // console.log(`Subset safe: ${subsetLevels} (removed value: ${allLevels[i]})`);
       return true;
     }
   }

@@ -5,9 +5,10 @@
   "description": "Advent of Code 2024 with Neovim!",
   "scripts": {
     "pretty": "npx prettier . --write",
-    "1_day": "bun 1_day/code.js",
-    "2_day": "bun 2_day/code.js",
-    "3_day": "bun 3_day/code.js"
+    "1_day": "bun 1_day/code.ts",
+    "2_day": "bun 2_day/code.ts",
+    "3_day": "bun 3_day/code.ts",
+    "4_day": "bun 4_day/code.ts"
   },
   "author": "c-shinkle",
   "license": "ISC",

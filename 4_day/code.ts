@@ -1,18 +1,18 @@
 import { readFileSync } from "fs";
 
-// const input = readFileSync("4_day/input.txt").toString();
-const input = `
-MMMSXXMASM
-MSAMXMSMSA
-AMXSXMAAMM
-MSAMASMSMX
-XMASAMXAMM
-XXAMMXXAMA
-SMSMSASXSS
-SAXAMASAAA
-MAMMMXMMMM
-MXMXAXMASX
-`;
+const input = readFileSync("4_day/input.txt").toString();
+// const input = `
+// MMMSXXMASM
+// MSAMXMSMSA
+// AMXSXMAAMM
+// MSAMASMSMX
+// XMASAMXAMM
+// XXAMMXXAMA
+// SMSMSASXSS
+// SAXAMASAAA
+// MAMMMXMMMM
+// MXMXAXMASX
+// `;
 
 console.log(part1(input));
 

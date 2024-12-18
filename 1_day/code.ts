@@ -11,11 +11,10 @@ const input = readFileSync("1_day/input.txt").toString();
 
 //console.log(input);
 
-const part1 = (input) => {
-  const lines = input.split("\n");
-  lines.pop();
-  let lhs = [];
-  let rhs = [];
+const part1 = (input: string) => {
+  const lines = input.trim().split("\n");
+  let lhs: number[] = [];
+  let rhs: number[] = [];
 
   for (const line of lines) {
     const [left, right] = line.split("   ");
@@ -28,8 +27,8 @@ const part1 = (input) => {
     rhs.push(rightNumber);
   }
 
-  lhs = lhs.toSorted((a, b) => a - b);
-  rhs = rhs.toSorted((a, b) => a - b);
+  lhs.sort((a, b) => a - b);
+  rhs.sort((a, b) => a - b);
 
   let total = 0;
 
@@ -42,19 +41,16 @@ const part1 = (input) => {
 
 //console.log(part1(input));
 
-const part2 = (input) => {
-  const lines = input.split("\n");
-  lines.pop();
+const part2 = (input: string) => {
+  const lines = input.trim().split("\n");
 
-  let lhs = [];
-  let rhs = new Map();
+  let lhs: number[] = [];
+  let rhs = new Map<number, number>();
 
   for (const line of lines) {
     const [left, right] = line.split("   ");
     const leftNumber = Number.parseInt(left);
     const rightNumber = Number.parseInt(right);
-    console.log(`left = ${left}`);
-    console.log(`right = ${right}`);
 
     lhs.push(leftNumber);
 

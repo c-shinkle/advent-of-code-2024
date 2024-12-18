@@ -66,19 +66,7 @@ describe("Day 4", () => {
   });
 
   it("should count all xmas", () => {
-    const input = `
-MMMSXXMASM
-MSAMXMSMSA
-AMXSXMAAMM
-MSAMASMSMX
-XMASAMXAMM
-XXAMMXXAMA
-SMSMSASXSS
-SAXAMASAAA
-MAMMMXMMMM
-MXMXAXMASX
-`;
-    const actual = part1(input);
+    const actual = part1(rows.join("\n"));
     expect(actual).toEqual(18);
   });
 });
