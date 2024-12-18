@@ -24,7 +24,7 @@ const part1 = (input: string) => {
 
   return sum;
 };
-// console.log(part1(input));
+console.log(part1(input));
 
 // const input =
 //   "xmul(2,4)&mul[3,7]!^dont()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
@@ -43,11 +43,7 @@ const part2 = (input: string) => {
 
   for (const match of input.matchAll(mulRegex)) {
     const start = match.index;
-    const enableGLB = enableIndexes.findLast((e) => e <= start);
-    assert(
-      enableGLB !== undefined,
-      "enableIndexes starts with a '0', therefore, we will always find an element",
-    );
+    const enableGLB = enableIndexes.findLast((e) => e <= start) ?? 0;
     const disableGLB = disableIndexes.findLast((e) => e <= start) ?? -1;
 
     if (enableGLB > disableGLB || (enableGLB <= start && start < disableGLB)) {
