@@ -14,7 +14,7 @@ const input = readFileSync("4_day/input.txt").toString();
 // MXMXAXMASX
 // `;
 
-console.log(part1(input));
+// console.log(part1(input));
 
 export function part1(input: string) {
   let count = 0;
@@ -113,6 +113,46 @@ export function checkAllDiagonalsUpLeft(rows: string[]) {
   return checkAllDiagonalsDownRight(reverseRowsAndCols);
 }
 
-// function rangeEx(start: number, end: number) {
-//   return Array.from({ length: end - start }, (_, i) => start + i);
-// }
+export function part2(input: string) {
+  const grid = input.trim().split("\n");
+  const rowLen = grid.length;
+  const colLen = grid[0].length;
+  let count = 0;
+
+  for (let row = 0; row < rowLen; row++) {
+    for (let col = 0; col < colLen; col++) {
+      const letterAInBounds =
+        grid[row][col] == "A" &&
+        0 < row &&
+        row < rowLen - 1 &&
+        0 < col &&
+        col < colLen - 1;
+      if (!letterAInBounds) {
+        continue;
+      }
+
+      const upRightM = grid[row - 1][col + 1] == "M";
+      const upRightS = grid[row - 1][col + 1] == "S";
+
+      const upLeftM = grid[row - 1][col - 1] == "M";
+      const upLeftS = grid[row - 1][col - 1] == "S";
+
+      const downLeftM = grid[row + 1][col - 1] == "M";
+      const downLeftS = grid[row + 1][col - 1] == "S";
+
+      const downRightM = grid[row + 1][col + 1] == "M";
+      const downRightS = grid[row + 1][col + 1] == "S";
+
+      const upM = upRightM && upLeftM && downLeftS && downRightS;
+      const leftM = upLeftM && downLeftM && upRightS && downRightS;
+      const downM = downLeftM && downRightM && upRightS && upLeftS;
+      const rightM = downRightM && upRightM && upLeftS && downLeftS;
+
+      if (upM || leftM || downM || rightM) {
+        count += 1;
+      }
+    }
+  }
+  return count;
+}
+console.log(part2(input));
