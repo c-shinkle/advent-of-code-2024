@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 
-const input = readFileSync("2_day/input.txt").toString();
+const input = readFileSync("02_day/input.txt").toString();
 // const input = `7 6 4 2 1
 // 1 2 7 8 9
 // 9 7 6 2 1

@@ -1,24 +1,21 @@
 {
   "name": "advent-of-code-2024",
-  "type": "module",
   "version": "0.1.0",
-  "description": "Advent of Code 2024 with Neovim!",
-  "scripts": {
-    "pretty": "npx prettier . --write",
-    "1_day": "bun 1_day/code.ts",
-    "2_day": "bun 2_day/code.ts",
-    "3_day": "bun 3_day/code.ts",
-    "4_day": "bun 4_day/code.ts"
-  },
   "author": "c-shinkle",
-  "license": "ISC",
   "devDependencies": {
     "@types/bun": "latest",
     "prettier": "3.4.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
-  "dependencies": {
-    "ts-node": "^10.9.2"
-  }
+  "description": "Advent of Code 2024 with Neovim!",
+  "license": "ISC",
+  "scripts": {
+    "pretty": "npx prettier . --write",
+    "01_day": "bun 01_day/code.ts",
+    "02_day": "bun 02_day/code.ts",
+    "03_day": "bun 03_day/code.ts",
+    "04_day": "bun 04_day/code.ts"
+  },
+  "type": "module"
 }
