@@ -11,11 +11,12 @@
   "description": "Advent of Code 2024 with Neovim!",
   "license": "ISC",
   "scripts": {
-    "pretty": "npx prettier . --write",
+    "pretty": "bun x prettier . --write",
     "01_day": "bun 01_day/code.ts",
     "02_day": "bun 02_day/code.ts",
     "03_day": "bun 03_day/code.ts",
-    "04_day": "bun 04_day/code.ts"
+    "04_day": "bun 04_day/code.ts",
+    "05_day": "bun 05_day/code.ts"
   },
   "type": "module"
 }
