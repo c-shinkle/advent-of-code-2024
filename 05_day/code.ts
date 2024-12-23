@@ -32,7 +32,7 @@ const input = readFileSync("05_day/input.txt").toString();
 // 97,13,75,29,47
 // `;
 
-console.log(part1(input));
+// console.log(part1(input));
 export function part1(input: string) {
   const [orderingLines, pagesLines] = input.trim().split("\n\n");
 
@@ -65,7 +65,8 @@ export function part1(input: string) {
 function helper(rules: number[], beforeMap: Map<number, Set<number>>): boolean {
   const seen = new Set<number>();
   for (const rule of rules) {
-    if (!beforeMap.get(rule)?.isDisjointFrom(seen)) {
+    const before = beforeMap.get(rule);
+    if (!before?.isDisjointFrom(seen)) {
       return false;
     }
     seen.add(rule);
@@ -73,6 +74,7 @@ function helper(rules: number[], beforeMap: Map<number, Set<number>>): boolean {
   return true;
 }
 
+console.log(part2(input));
 export function part2(input: string) {
   const [orderingLines, pagesLines] = input.trim().split("\n\n");
 
@@ -91,18 +93,41 @@ export function part2(input: string) {
     }
   }
 
-  let count = 0;
+  let incorrectRulesArray: number[][] = [];
   for (const line of pagesLines.split("\n")) {
-    const rules = line.split(",").map((r) => Number.parseInt(r));
-    if (!helper(rules, beforeMap)) {
+    let rules = line.split(",").map((r) => Number.parseInt(r));
 
-      count += rules[Math.floor(rules.length / 2)];
+    let isIncorrect = false;
+    let isInProgress = true;
+    outer: while (isInProgress) {
+      for (let currentIndex = 0; currentIndex < rules.length; currentIndex++) {
+        const currentRule = rules[currentIndex];
+        const beforeRules = beforeMap.get(currentRule);
+        if (!beforeRules) {
+          continue;
+        }
+
+        for (let beforeIndex = 0; beforeIndex < currentIndex; beforeIndex++) {
+          const beforeRule = rules[beforeIndex];
+          if (beforeRules.has(beforeRule)) {
+            isIncorrect = true;
+            rules[currentIndex] = beforeRule;
+            rules[beforeIndex] = currentRule;
+            continue outer;
+          }
+        }
+      }
+
+      if (isIncorrect) {
+        incorrectRulesArray.push(rules);
+      }
+      isInProgress = false;
     }
   }
 
+  let count = 0;
+  for (const rules of incorrectRulesArray) {
+    count += rules[Math.floor(rules.length / 2)];
+  }
   return count;
-}
-
-function fixRules(rules: string[], beforeMap: Map<number, Set<number>>) {
-
 }
