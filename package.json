@@ -16,7 +16,8 @@
     "02_day": "bun 02_day/code.ts",
     "03_day": "bun 03_day/code.ts",
     "04_day": "bun 04_day/code.ts",
-    "05_day": "bun 05_day/code.ts"
+    "05_day": "bun 05_day/code.ts",
+    "06_day": "bun 06_day/code.ts"
   },
   "type": "module"
 }
